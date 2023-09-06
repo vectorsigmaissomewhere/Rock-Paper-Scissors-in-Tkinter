@@ -1,9 +1,18 @@
 import tkinter as tk
 from tkinter import ttk
 import subprocess
+import pygame
 
 window = tk.Tk()
 window.title("Hello World")
+
+#Initialize pygame mixer
+pygame.mixer.init()
+
+#load and play music
+pygame.mixer.music.load('openingmusic.mp3')
+pygame.mixer.music.play()
+
 
 # Load the background image and resize it
 image = tk.PhotoImage(file="opening.png")
@@ -52,6 +61,7 @@ progress.place(x=330, y=450)
 
 def top():
     window.withdraw()
+    pygame.mixer.music.stop()
     subprocess.run(["python", "main_program.py"])
     window.destroy()
 
@@ -68,7 +78,11 @@ def load():
         i += 1
     else:
         top()
+def on_closing():
+    window.destroy()
 
 load()
 window.resizable(False, False)
+window.protocol("WM_DELETE_WINDOW",on_closing)
 window.mainloop()
+
