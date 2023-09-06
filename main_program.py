@@ -2,13 +2,13 @@ import tkinter as tk
 import pygame
 import random
 
-# Initialize pygame mixer and load a music file (for demo purposes, I'll use the same 'cara.mp3')
+
 pygame.mixer.init()
 pygame.mixer.music.load('cara.mp3')
-pygame.mixer.music.play(-1)  # Play the music in a loop
+pygame.mixer.music.play(-1)  
 
 def set_volume(val):
-    volume = float(val) / 100  # Scale's values are strings; convert to float and normalize
+    volume = float(val) / 100  
     pygame.mixer.music.set_volume(volume)
 
 def on_closing():
@@ -16,128 +16,129 @@ def on_closing():
     window.destroy()
 
 window = tk.Tk()
+window.title("ROCK PAPER SCISSORS")
 window.geometry("800x550")
-window.configure(bg="#FFFFFF")
+window.configure(bg="black")
 
-welcome_label = tk.Label(window, text="Home")
-welcome_label.place(x=133, y=25)
 
-volume_label = tk.Label(window, text="Volume", bg="#FFFFFF")
-volume_label.place(x=20, y=20)
+frameCnt = 12
+frames = [tk.PhotoImage(file='caramelldansen-dance.gif',format = 'gif -index %i' %(i)) for i in range(frameCnt)]
 
-volume_scale = tk.Scale(window, from_=0, to=100, orient=tk.HORIZONTAL, command=set_volume)
-volume_scale.set(50)  # Default volume level: 50%
-volume_scale.place(x=20, y=50)
+def update(ind):
+
+    frame = frames[ind]
+    ind += 1
+    if ind == frameCnt:
+        ind = 0
+    label.configure(image=frame)
+    window.after(100, update, ind)
+label = tk.Label(window)
+label.pack()
+window.after(0, update, 0)
+
+volume_label = tk.Label(window, text="Volume", bg="black",fg="white",font="Georgia")
+volume_label.place(x=650, y=20)
+
+volume_scale = tk.Scale(window, from_=0, to=100, orient=tk.HORIZONTAL, command=set_volume,troughcolor="white",bg="#ffe100")
+volume_scale.set(50) 
+volume_scale.place(x=650, y=50)
 
 firstplayerframe = tk.Frame(
     window,
-    bg="#C522D4",
+    bg="#3a1cd4",
     height=150,
-    width=200
+    width=250
 )
-firstplayerframe.place(x=300, y=50)
+firstplayerframe.place(x=100, y=300)
+firstplayerlabel=tk.Label(firstplayerframe,text="Rock Paper Scissor",width=15,height=1,font=("Arial",12))
+firstplayerlabel.place(x=50,y=50)
 
 yourframe = tk.Frame(
     window,
-    bg="#C522D4",
+    bg="#3a1cd4",
     height=150,
-    width=200
+    width=250
 )
 yourframe.place(x=500, y=300)
+yourframelabel=tk.Label(yourframe,text="Rock Paper scissors",width=15,height=1,font=("Arial",12))
+yourframelabel.place(x=50,y=50)
 
 
-
-
+chosen = ""
 def youchoserock():
     global chosen
     chosen = "rock"
     random_choice()
+    yourframelabel.config(text="Rock")
     mainresult()
+    
 
 def youchosepaper():
     global chosen
     chosen = "paper"
     random_choice()
+    yourframelabel.config(text="Paper")
     mainresult()
+    
 
 def youchosescissors():
     global chosen
     chosen = "scissors"
     random_choice()
+    yourframelabel.config(text="Scissors")
     mainresult()
 
 
 
-
-
-
-
-
-
-rockbutton = tk.Button(yourframe, text="Rock", fg="black", bg="white", command=youchoserock)
+rockbutton = tk.Button(yourframe, text="Rock", fg="black", bg="white", command=youchoserock,font=("Arial",12))
 rockbutton.place(x=20, y=90)
 
-paperbutton = tk.Button(yourframe, text="Paper", fg="black", bg="white", command=youchosepaper)
+paperbutton = tk.Button(yourframe, text="Paper", fg="black", bg="white", command=youchosepaper,font=("Arial",12))
 paperbutton.place(x=75, y=90)
 
-scissorsbutton = tk.Button(yourframe, text="Scissors", fg="black", bg="white", command=youchosescissors)
+scissorsbutton = tk.Button(yourframe, text="Scissors", fg="black", bg="white", command=youchosescissors,font=("Arial",12))
 scissorsbutton.place(x=135, y=90)
 
-chosen = ""
 result_label = tk.Label(
     window,
     text="running",
     font=("Trebuchet Ms", 15, "bold"),
-    fg="#000000",
-    bg="#FFFFFF",
+    fg="white",
+    bg="black"
 )
 result_label.place(x=350, y=450)
-
-
-reverseBackbtn=tk.Button(yourframe,text="Play Again",fg="black",bg="white")
-reverseBackbtn.place(x=195,y=90)
-def reverseBack():
-  global chosen
-  chosen=""
   
 def random_choice():
     randomchosen = ["rock", "paper", "scissors"]
     run=random.randint(0,2)
     global otherplayerchosen
     otherplayerchosen=randomchosen[run]
+    firstplayerlabel.config(text=(otherplayerchosen).capitalize())
 def mainresult():
   
   if chosen=="rock":
     if otherplayerchosen=="rock":
-      global resultlabel
-      resultlabel.config(text="Draw")
+      result_label.config(text="Draw")
     elif otherplayerchosen=="paper":
-      global result_label
-      resultlabel.config(text="Other player won")
+      result_label.config(text="Other player won")
     elif otherplayerchosen=="scissors":
-      global result_label
-      resultlabel.config(text="You won")
+      result_label.config(text="You won")
   elif chosen=="paper":
     if otherplayerchosen=="rock":
-      global result_label
-      resultlabel.config(text="you won")
+      result_label.config(text="you won")
     elif otherplayerchosen=="paper":
-      global result_label
-      resultlabel.config(text="draw")
+      result_label.config(text="draw")
     elif otherplayerchosen=="scissors":
-      global result_label
-      resultlabel.config(text="Other player Won")
+      result_label.config(text="Other player Won")
   elif chosen=="scissors":
     if otherplayerchosen=="rock":
-      global result_label
-      resultlabel.config(text="Other Player won")
+      result_label.config(text="Other Player won")
     elif otherplayerchosen=="paper":
-      global result_label
-      resultlabel.config(text="You Won")
+      result_label.config(text="You Won")
     elif otherplayerchosen=="scissors":
-      global result_label
-      resultlabel.config(text="Draw")
+      result_label.config(text="Draw")
 window.protocol("WM_DELETE_WINDOW", on_closing)
 window.resizable(False, False)
 window.mainloop()
+
 
