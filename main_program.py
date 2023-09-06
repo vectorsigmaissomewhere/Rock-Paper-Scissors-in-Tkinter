@@ -45,24 +45,8 @@ yourframe = tk.Frame(
 )
 yourframe.place(x=500, y=300)
 
-rockbutton = tk.Button(yourframe, text="Rock", fg="black", bg="white", command="youchoserock")
-rockbutton.place(x=20, y=90)
 
-paperbutton = tk.Button(yourframe, text="Paper", fg="black", bg="white", command="youchosepaper")
-paperbutton.place(x=75, y=90)
 
-scissorsbutton = tk.Button(yourframe, text="Scissors", fg="black", bg="white", command="youchosescissors")
-scissorsbutton.place(x=135, y=90)
-
-chosen = ""
-result_label = tk.Label(
-    window,
-    text="running",
-    font=("Trebuchet Ms", 15, "bold"),
-    fg="#000000",
-    bg="#FFFFFF",
-)
-result_label.place(x=350, y=450)
 
 def youchoserock():
     global chosen
@@ -82,6 +66,34 @@ def youchosescissors():
     random_choice()
     mainresult()
 
+
+
+
+
+
+
+
+
+rockbutton = tk.Button(yourframe, text="Rock", fg="black", bg="white", command=youchoserock)
+rockbutton.place(x=20, y=90)
+
+paperbutton = tk.Button(yourframe, text="Paper", fg="black", bg="white", command=youchosepaper)
+paperbutton.place(x=75, y=90)
+
+scissorsbutton = tk.Button(yourframe, text="Scissors", fg="black", bg="white", command=youchosescissors)
+scissorsbutton.place(x=135, y=90)
+
+chosen = ""
+result_label = tk.Label(
+    window,
+    text="running",
+    font=("Trebuchet Ms", 15, "bold"),
+    fg="#000000",
+    bg="#FFFFFF",
+)
+result_label.place(x=350, y=450)
+
+
 reverseBackbtn=tk.Button(yourframe,text="Play Again",fg="black",bg="white")
 reverseBackbtn.place(x=195,y=90)
 def reverseBack():
@@ -94,27 +106,36 @@ def random_choice():
     global otherplayerchosen
     otherplayerchosen=randomchosen[run]
 def mainresult():
-  global resultlabel
+  
   if chosen=="rock":
     if otherplayerchosen=="rock":
+      global resultlabel
       resultlabel.config(text="Draw")
     elif otherplayerchosen=="paper":
+      global result_label
       resultlabel.config(text="Other player won")
     elif otherplayerchosen=="scissors":
+      global result_label
       resultlabel.config(text="You won")
   elif chosen=="paper":
     if otherplayerchosen=="rock":
+      global result_label
       resultlabel.config(text="you won")
     elif otherplayerchosen=="paper":
+      global result_label
       resultlabel.config(text="draw")
     elif otherplayerchosen=="scissors":
+      global result_label
       resultlabel.config(text="Other player Won")
   elif chosen=="scissors":
     if otherplayerchosen=="rock":
+      global result_label
       resultlabel.config(text="Other Player won")
     elif otherplayerchosen=="paper":
+      global result_label
       resultlabel.config(text="You Won")
     elif otherplayerchosen=="scissors":
+      global result_label
       resultlabel.config(text="Draw")
 window.protocol("WM_DELETE_WINDOW", on_closing)
 window.resizable(False, False)
