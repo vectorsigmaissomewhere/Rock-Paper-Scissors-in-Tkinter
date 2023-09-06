@@ -57,7 +57,7 @@ scissorsbutton.place(x=135, y=90)
 chosen = ""
 result_label = tk.Label(
     window,
-    text="",
+    text="running",
     font=("Trebuchet Ms", 15, "bold"),
     fg="#000000",
     bg="#FFFFFF",
@@ -88,29 +88,31 @@ def random_choice():
     global otherplayerchosen
     otherplayerchosen=randomchosen[run]
 def mainresult():
-  if chosen.equals("rock"):
-    if otherplayerchosen.equals("rock"):
-      print("draw")
-    elif otherplayerchosen.equals("paper"):
-      print("Other player Won")
-    elif otherplayerchosen.equals("scissors"):
-      print("You won")
-  elif chosen.equals("paper"):
-    if otherplayerchosen.equals("rock"):
-      print("you won")
-    elif otherplayerchosen.equals("paper"):
-      print("draw")
-    elif otherplayerchosen.equals("scissors"):
-      print("Other player Won")
-  elif chosen.equals("scissors"):
-    if otherplayerchosen.equals("rock"):
-      print("Other Player won")
-    elif otherplayerchosen.equals("paper"):
-      print("You Won")
-    elif otherplayerchosen.equals("scissors"):
-      print("Draw")
-      
+  global resultconfig
+  if chosen=="rock":
+    if otherplayerchosen=="rock":
+      resultconfig.config(text="Draw")
+    elif otherplayerchosen=="paper":
+      resultconfig.config(text="Other player won")
+    elif otherplayerchosen=="scissors":
+      resultconfig.config(text="You won")
+  elif chosen=="paper":
+    if otherplayerchosen=="rock":
+      resultconfig.config(text="you won")
+    elif otherplayerchosen=="paper":
+      resultconfig.config(text="draw")
+    elif otherplayerchosen=="scissors":
+      resultconfig.config(text="Other player Won")
+  elif chosen=="scissors":
+    if otherplayerchosen=="rock":
+      resultconfig.config(text="Other Player won")
+    elif otherplayerchosen=="paper":
+      resultconfig.config(text="You Won")
+    elif otherplayerchosen=="scissors":
+      resultconfig.config(text="Draw")
+random_choice()    
 mainresult()
 window.protocol("WM_DELETE_WINDOW", on_closing)
 window.resizable(False, False)
 window.mainloop()
+
