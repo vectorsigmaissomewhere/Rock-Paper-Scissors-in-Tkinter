@@ -88,29 +88,7 @@ def random_choice():
     randomchosen = ["rock", "paper", "scissors"]
     return random.choice(randomchosen)
 
-def determine_winner(player_choice, opponent_choice):
-    if player_choice == opponent_choice:
-        return "It's a tie!"
-    elif (
-        (player_choice == "rock" and opponent_choice == "scissors") or
-        (player_choice == "paper" and opponent_choice == "rock") or
-        (player_choice == "scissors" and opponent_choice == "paper")
-    ):
-        return "You win!"
-    else:
-        return "Opponent wins!"
 
-def play_game():
-    global chosen
-    if chosen:
-        opponent_choice = random_choice()
-        result = determine_winner(chosen, opponent_choice)
-        result_label.config(text=result)
-    else:
-        result_label.config(text="Choose a move!")
-
-play_button = tk.Button(yourframe, text="Play", fg="black", bg="white", command=play_game)
-play_button.place(x=75, y=120)
 
 window.protocol("WM_DELETE_WINDOW", on_closing)
 window.resizable(False, False)
