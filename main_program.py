@@ -12,7 +12,7 @@ def set_volume(val):
     pygame.mixer.music.set_volume(volume)
 
 def on_closing():
-    pygame.mixer.music.stop()
+    pygame.mixer.music.stop() 
     window.destroy()
 
 window = tk.Tk()
@@ -67,14 +67,20 @@ result_label.place(x=350, y=450)
 def youchoserock():
     global chosen
     chosen = "rock"
+    random_choice()
+    mainresult()
 
 def youchosepaper():
     global chosen
     chosen = "paper"
+    random_choice()
+    mainresult()
 
 def youchosescissors():
     global chosen
     chosen = "scissors"
+    random_choice()
+    mainresult()
 
 reverseBackbtn=tk.Button(yourframe,text="Play Again",fg="black",bg="white")
 reverseBackbtn.place(x=195,y=90)
@@ -88,30 +94,28 @@ def random_choice():
     global otherplayerchosen
     otherplayerchosen=randomchosen[run]
 def mainresult():
-  global resultconfig
+  global resultlabel
   if chosen=="rock":
     if otherplayerchosen=="rock":
-      resultconfig.config(text="Draw")
+      resultlabel.config(text="Draw")
     elif otherplayerchosen=="paper":
-      resultconfig.config(text="Other player won")
+      resultlabel.config(text="Other player won")
     elif otherplayerchosen=="scissors":
-      resultconfig.config(text="You won")
+      resultlabel.config(text="You won")
   elif chosen=="paper":
     if otherplayerchosen=="rock":
-      resultconfig.config(text="you won")
+      resultlabel.config(text="you won")
     elif otherplayerchosen=="paper":
-      resultconfig.config(text="draw")
+      resultlabel.config(text="draw")
     elif otherplayerchosen=="scissors":
-      resultconfig.config(text="Other player Won")
+      resultlabel.config(text="Other player Won")
   elif chosen=="scissors":
     if otherplayerchosen=="rock":
-      resultconfig.config(text="Other Player won")
+      resultlabel.config(text="Other Player won")
     elif otherplayerchosen=="paper":
-      resultconfig.config(text="You Won")
+      resultlabel.config(text="You Won")
     elif otherplayerchosen=="scissors":
-      resultconfig.config(text="Draw")
-random_choice()    
-mainresult()
+      resultlabel.config(text="Draw")
 window.protocol("WM_DELETE_WINDOW", on_closing)
 window.resizable(False, False)
 window.mainloop()
