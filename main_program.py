@@ -86,10 +86,33 @@ def youchosescissors():
 
 def random_choice():
     randomchosen = ["rock", "paper", "scissors"]
-    return random.choice(randomchosen)
-
-
-
+    run=random.randint(0,2)
+    global otherplayerchosen
+    otherplayerchosen=randomchosen[run]
+def mainresult():
+  if chosen.equals("rock"):
+    if otherplayerchosen.equals("rock"):
+      print("draw")
+    elif otherplayerchosen.equals("paper"):
+      print("Other player Won")
+    elif otherplayerchosen.equals("scissors"):
+      print("You won")
+  elif chosen.equals("paper"):
+    if otherplayerchosen.equals("rock"):
+      print("you won")
+    elif otherplayerchosen.equals("paper"):
+      print("draw")
+    elif otherplayerchosen.equals("scissors"):
+      print("Other player Won")
+  elif chosen.equals("scissors"):
+    if otherplayerchosen.equals("rock"):
+      print("Other Player won")
+    elif otherplayerchosen.equals("paper"):
+      print("You Won")
+    elif otherplayerchosen.equals("scissors"):
+      print("Draw")
+      
+mainresult()
 window.protocol("WM_DELETE_WINDOW", on_closing)
 window.resizable(False, False)
 window.mainloop()
