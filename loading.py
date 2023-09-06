@@ -4,17 +4,15 @@ import subprocess
 import pygame
 
 window = tk.Tk()
-window.title("Hello World")
+window.title("ROCK PAPER SCISSORS")
 
-#Initialize pygame mixer
 pygame.mixer.init()
 
-#load and play music
+
 pygame.mixer.music.load('openingmusic.mp3')
 pygame.mixer.music.play()
 
 
-# Load the background image and resize it
 image = tk.PhotoImage(file="opening.png")
 width = image.width() // 2  
 height = image.height() // 2  
@@ -30,24 +28,14 @@ x = (screen_width - width) // 2
 y = (screen_height - height) // 2
 window.geometry(f"{width}x{height}+{x}+{y}")
 
-
-welcome_label = tk.Label(
-    text="Your Application Name",
-    bg="#26C680",
-    font=("Trebuchet Ms", 15, "bold"),
-    fg="#FFFFFF",
-)
-welcome_label.place(x=130, y=25)
-
-
 progress_label = tk.Label(
     window,
     text="Loading...",
     font=("Trebuchet Ms", 13, "bold"),
     fg="#FFFFFF",
-    bg="#2F6C60",
+    bg="#42f545",
 )
-progress_label.place(x=450, y=400)
+progress_label.place(x=450, y=420)
 
 progress = ttk.Progressbar(
     window,
@@ -66,12 +54,10 @@ def top():
     window.destroy()
 
 i = 0
-
-
 def load():
     global i
     if i <= 10:
-        txt = 'Loading... ' + str(10 * i) + '%'
+        txt = 'Loading.....' + str(10 * i) + '%'
         progress_label.config(text=txt)
         progress_label.after(600, load)
         progress['value'] = 10 * i
