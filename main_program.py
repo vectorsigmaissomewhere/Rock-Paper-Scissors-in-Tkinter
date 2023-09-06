@@ -37,14 +37,6 @@ firstplayerframe = tk.Frame(
 )
 firstplayerframe.place(x=300, y=50)
 
-secondplayerframe = tk.Frame(
-    window,
-    bg="#C522D4",
-    height=150,
-    width=200
-)
-secondplayerframe.place(x=50, y=300)
-
 yourframe = tk.Frame(
     window,
     bg="#C522D4",
@@ -84,6 +76,12 @@ def youchosescissors():
     global chosen
     chosen = "scissors"
 
+reverseBackbtn=tk.Button(yourframe,text="Play Again",fg="black",bg="white")
+reverseBackbtn.place(x=195,y=90)
+def reverseBack():
+  global chosen
+  chosen=""
+  
 def random_choice():
     randomchosen = ["rock", "paper", "scissors"]
     run=random.randint(0,2)
