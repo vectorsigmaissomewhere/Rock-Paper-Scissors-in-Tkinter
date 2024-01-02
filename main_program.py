@@ -18,7 +18,7 @@ def on_closing():
 window = tk.Tk()
 window.title("ROCK PAPER SCISSORS")
 window.geometry("800x550")
-window.configure(bg="black")
+window.configure(bg = "black")
 
 
 frameCnt = 12
@@ -30,13 +30,13 @@ def update(ind):
     ind += 1
     if ind == frameCnt:
         ind = 0
-    label.configure(image=frame)
+    label.configure(image = frame)
     window.after(100, update, ind)
 label = tk.Label(window)
 label.pack()
 window.after(0, update, 0)
 
-volume_label = tk.Label(window, text="Volume", bg="black",fg="white",font="Georgia")
+volume_label = tk.Label(window, text = "Volume", bg = "black",fg = "white",font = "Georgia")
 volume_label.place(x = 650, y = 20)
 
 volume_scale = tk.Scale(window, from_ = 0, to = 100, orient=tk.HORIZONTAL, command = set_volume,troughcolor = "white",bg = "#ffe100")
